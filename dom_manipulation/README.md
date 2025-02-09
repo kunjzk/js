@@ -23,3 +23,4 @@ DOM
 - Main activities: event listening and getting elements. Listen for a click, a hover, a form submission etc, then we want to change something on the element.
 - Event listener is the reccomended way to register an event listener: https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
 - HTML is a markup language. DOM is processed elements in document tree, in memory.
+- Event types: https://developer.mozilla.org/en-US/docs/Web/Events

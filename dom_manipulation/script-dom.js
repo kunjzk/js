@@ -59,3 +59,32 @@ document
     console.log(taskList);
     taskList.lastElementChild.remove(); // better than original method: taskList.children[2].remove()
   });
+
+// ------ Example 6: Event Handling ------
+document
+  .getElementById("clickMeButton")
+  .addEventListener("dblclick", function () {
+    // hover, click, double click, more event types possible
+    alert("clicked");
+  });
+
+// ------ Example 7: event delegation -----
+
+// For debugging we can print out events that occurred
+// When we click an item on the list, a PointerEvent is produced which tells us info about the click + the element that was clicked
+// the event contains a target property that points to the HTML element and it contains a textContent field that holds the text
+document.getElementById("teaList").addEventListener("click", function (event) {
+  console.log(event);
+  if (event.target && event.target.matches(".teaItem")) {
+    console.log("You selected " + event.target.textContent);
+  }
+});
+
+// ------ Example 8: Form handling ------
+document
+  .getElementById("feedbackForm")
+  .addEventListener("submit", function (event) {
+    event.preventDefault();
+    let feedback = document.getElementById("feedbackInput");
+    console.log(feedback);
+  });
