@@ -84,7 +84,27 @@ document.getElementById("teaList").addEventListener("click", function (event) {
 document
   .getElementById("feedbackForm")
   .addEventListener("submit", function (event) {
-    event.preventDefault();
+    event.preventDefault(); // what does this do?
+    // even though there are multiple elements with id feedbackInput,
+    // because our event listener is tied to a "submit" event, we get the <input> element in this selector
     let feedback = document.getElementById("feedbackInput");
     console.log(feedback);
+    console.log(feedback.value); // this prints out the value supplied by user
+    document.getElementById(
+      "feedbackDisplay"
+    ).textContent = `Feedback: ${feedback.value}`;
+  });
+
+// ------ Example 9: Check that the DOM is loaded ------
+// You can add an event listener to the document itself
+document.addEventListener("DOMContentLoaded", function () {
+  document.getElementById("domStatus").textContent = "DOM fully loaded";
+});
+
+// ------ Example 10: CSS Class manipulation ------
+document
+  .getElementById("toggleHighlight")
+  .addEventListener("click", function () {
+    let dt = document.getElementById("descriptionText");
+    dt.classList.toggle("highlight");
   });
