@@ -32,7 +32,7 @@ fetchData()
     return "Cool stuff";
   })
   .then((value) => {
-    console.log("Received " + value + " from the previous then");
+    console.log("Received " + value + " from the previous then statement");
   })
   .catch((data) => {
     console.log(data);
