@@ -41,3 +41,20 @@ Docs: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_O
 ## This, call, bind, apply
 
 https://www.geeksforgeeks.org/explain-call-apply-and-bind-methods-in-javascript/
+
+## CommonJS and ES6 Modules
+
+1. ES6 modules are the future.
+2. export is used to export values from a js module (or file) to be used elsewhere
+
+ES6 Modules:
+
+- Export: use `export functionName` or `export default functionName`
+- Import:
+  - For default import, use `import functionName from <relative_path_to_file.js>`
+  - For non-default (named) import, use `import {functionName1, functionName2} from <relative_path_to_file.js>`
+
+CommonJS modules:
+
+- Export: declare functions like normal, then add `module.exports = { function1, function2 }` at end of file
+- Import: hold the exported functions in a variable, like `const fns = require(<relative_path_to_file.js>)`, then call them with `fns.function1(<args>)`
