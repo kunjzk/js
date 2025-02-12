@@ -37,3 +37,7 @@ Docs: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_O
 - We can add methods to an object's prototype chain: `Person.prototype.greet = function() { bla bla bla}`
 - We can then access these methods when we instantiate an object
 - Nothing special
+
+## This, call, bind, apply
+
+https://www.geeksforgeeks.org/explain-call-apply-and-bind-methods-in-javascript/
