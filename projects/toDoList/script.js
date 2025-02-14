@@ -1,35 +1,54 @@
-let count = 0;
+document.addEventListener("DOMContentLoaded", () => {
+  const todoInput = document.getElementById("todo-input");
+  const addTaskButton = document.getElementById("add-task-btn");
+  const todoList = document.getElementById("todo-list");
 
-allTaskIds = [];
+  let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
-function addNewTask(count, userInput) {
-  let li = document.createElement("li");
-  let btn = document.createElement("button");
-  btn.setAttribute("class", "delete-task");
-  btn.innerHTML = "delete";
-  li.textContent = userInput;
-  li.setAttribute("id", "task-" + count);
-  li.appendChild(btn);
-  let ul = document.getElementById("todo-list");
-  ul.appendChild(li);
+  tasks.forEach((task) => renderTask(task));
 
-  btn.addEventListener("click", function (e) {
-    console.log("button clicked");
-    let taskId = e.target.parentElement.id;
-    console.log(taskId);
-    let task = document.getElementById(taskId);
-    task.parentNode.removeChild(task);
+  addTaskButton.addEventListener("click", () => {
+    const taskText = todoInput.value.trim();
+    if (taskText === "") return;
+
+    const newTask = {
+      id: Date.now(),
+      text: taskText,
+      completed: false,
+    };
+    tasks.push(newTask);
+    saveTasks();
+    renderTask(newTask);
+    todoInput.value = ""; //clear input
+    console.log(tasks);
   });
-}
 
-document.getElementById("add-task-btn").addEventListener("click", function () {
-  let inputField = document.getElementById("todo-input");
-  let userInput = inputField.value;
-  if (userInput == "") {
-    return;
+  function renderTask(task) {
+    const li = document.createElement("li");
+    li.setAttribute("data-id", task.id);
+    if (task.completed) li.classList.add("completed");
+    li.innerHTML = `
+      <span>${task.text}</span>
+      <button>delete</button>
+      `;
+    li.addEventListener("click", (e) => {
+      if (e.target.tagName === "BUTTON") return;
+      task.completed = !task.completed;
+      li.classList.toggle("completed");
+      saveTasks();
+    });
+
+    li.querySelector("button").addEventListener("click", (e) => {
+      e.stopPropagation(); //prevent toggle from firing
+      tasks = tasks.filter((t) => t.id === task.id);
+      li.remove();
+      saveTasks();
+    });
+
+    todoList.appendChild(li);
   }
-  console.log(count++);
-  console.log(userInput);
-  addNewTask(count, userInput);
-  inputField.value = "";
+
+  function saveTasks() {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }
 });
