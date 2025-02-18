@@ -40,3 +40,7 @@ Runtimes
     1. Resolve
     2. `git add <conflicted files>`
     3. `git rebase --continue`, provide commit message
+- Connection to github works by SSH -- thats why we need to generate keys to set it up
+  - remote repository is usually called `origin` by convention
+  - `git push -u origin main`: set up a tracking relationship between remote and local branch. `-u` is for upstream.
+  - `pull vs fetch` fetch doesnt apply changes from remote into your working directory. Pull does that (pull = fetch + merge)
